@@ -16,12 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                         <!-- Link Buku -->
-                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
+                    <x-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
                         {{ __('Buku') }}
                     </x-nav-link>
 
                     <!-- Link Kategori -->
-                    <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+                    <x-nav-link :href="route('kategori.index')" :active="request()->routeIs('kategori.index')">
                         {{ __('Kategori') }}
                     </x-nav-link>
                 </div>
@@ -80,12 +80,12 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
                 <!-- Link Buku -->
-            <x-responsive-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
+            <x-responsive-nav-link :href="route('buku.index')" :active="request()->routeIs('buku.index')">
                 {{ __('Buku') }}
             </x-responsive-nav-link>
 
             <!-- Link Kategori -->
-            <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.index')">
+            <x-responsive-nav-link :href="route('kategori.index')" :active="request()->routeIs('kategori.index')">
                 {{ __('Kategori') }}
             </x-responsive-nav-link>
         </div>
