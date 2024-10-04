@@ -21,7 +21,7 @@
         <a href="{{ route('kategori.create') }}" class="btn btn-primary mb-3">
             <i class="fas fa-plus"></i> Tambah Kategori
         </a>
-        <table id="kategoriTable" class="table table-bordered">
+        <table id="kategoriTable" class="table table-bordered table-striped table-hover responsive nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -34,18 +34,18 @@
                     <tr>
                         <td>{{ $kategori->id }}</td>
                         <td>{{ $kategori->nama }}</td>
-                        <td>
-                            <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-warning">
-                                <i class="fas fa-edit"></i> Edit
-                            </a>
-                            <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST" class="d-inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin?')">
-                                    <i class="fas fa-trash"></i> Hapus
-                                </button>
-                            </form>
-                        </td>
+                        <td style="text-align: center; white-space: nowrap;">
+                            <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-warning btn-sm me-1">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <form action="{{ route('kategori.destroy', $kategori->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm me-1" onclick="return confirm('Apakah Anda yakin?')">
+                                    <i class="fas fa-trash"></i> Hapus
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

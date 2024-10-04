@@ -36,25 +36,48 @@
                 <tr>
                     <td>{{ $buku->id }}</td>
                     <td>{{ $buku->judul }}</td>
-                    <td>{{ $buku->kategori->nama }}</td> <!-- Relasi kategori -->
+                    <td>{{ $buku->kategori ? $buku->kategori->nama : 'Kategori Tidak Ada' }}</td> <!-- Relasi kategori -->
                     <td>{{ $buku->penulis }}</td>
-                    <td>
-                        <a href="{{ route('buku.edit', $buku->id) }}" class="btn btn-warning">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <form action="{{ route('buku.destroy', $buku->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin?')">
-                                <i class="fas fa-trash"></i> Hapus
-                            </button>
-                        </form>
-                    </td>
+                    <td style="text-align: center; white-space: nowrap;">
+                        <a href="{{ route('buku.edit', $buku->id) }}" class="btn btn-warning btn-sm me-1">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <form action="{{ route('buku.destroy', $buku->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm me-1" onclick="return confirm('Apakah Anda yakin?')">
+                                <i class="fas fa-trash"></i> Hapus
+                            </button>
+                        </form>
+                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"
+                            onclick="showDetail('{{ $buku->judul }}', '{{ $buku->kategori ? $buku->kategori->nama : 'Kategori Tidak Ada' }}', '{{ $buku->penulis }}')">
+                            <i class="fas fa-info-circle"></i> Detail
+                        </button>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+<div class="modal fade" id="detailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Detail Buku</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Judul:</strong> <span id="modal-judul"></span></p>
+          <p><strong>Kategori:</strong> <span id="modal-kategori"></span></p>
+          <p><strong>Penulis:</strong> <span id="modal-penulis"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -67,5 +90,12 @@
     $(document).ready(function() {
         $('#bukuTable').DataTable();
     });
+
+    function showDetail(judul, kategori, penulis) {
+        // Set nilai ke modal
+        $('#modal-judul').text(judul);
+        $('#modal-kategori').text(kategori);
+        $('#modal-penulis').text(penulis);
+    }
 </script>
 @endsection
